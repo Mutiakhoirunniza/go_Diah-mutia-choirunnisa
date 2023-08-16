@@ -1,0 +1,3 @@
+module GO_DIAH-MUTIA-CHOIRUNNISA
+
+go 1.21.0
