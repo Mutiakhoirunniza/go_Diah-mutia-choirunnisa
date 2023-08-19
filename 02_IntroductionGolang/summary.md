@@ -26,3 +26,5 @@ type data golang memiliki nilai zero value/ sebuah nilai default
 == (digunakan untuk kesamaan antara 2 nilai atau ekspresi)
 Len (digunakan untuk menghitung panjag dari berbagai type data)
 && { (digunakan untuk melakukan operasi logika AND) (True.True / false.false ) }
+byte dugunakan untuk representasi karakter ASCII
+%  modulo 
