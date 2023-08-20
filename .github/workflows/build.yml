@@ -1,21 +1,20 @@
-Current runner version: '2.308.0'
-Operating System
-  Ubuntu
-  22.04.3
-  LTS
-Runner Image
-  Image: ubuntu-22.04
-  Version: 20230806.1.0
-  Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20230806.1/images/linux/Ubuntu2204-Readme.md
-  Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20230806.1
-Runner Image Provisioner
-  2.0.266.1
-GITHUB_TOKEN Permissions
-  Contents: read
-  Metadata: read
-  Packages: read
-Secret source: Actions
-Prepare workflow directory
-Prepare all required actions
-Getting action download info
-Unable to resolve action `actions/checkout@main.go`, unable to find version `main.go`. Unable to resolve action `actions/setup-node@main.go`, unable to find version `main.go`
+name: Run Go Code
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@main
+      
+    - name: Set up Go
+      uses: actions/setup-go@main
+      with:
+        go-version: 1.x
+      
+    - name: Build and run Go code
+      run: |
+        go run main.go
