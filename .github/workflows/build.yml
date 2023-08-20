@@ -1,0 +1,22 @@
+name: Build and Test
+
+on: [push]  # Atur event yang akan memicu workflow, seperti push ke branch tertentu
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@main.go # Mengambil kode dari repositori
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@main.go
+      with:
+        node-version: '14'  # Mengatur versi 
+      
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm test
