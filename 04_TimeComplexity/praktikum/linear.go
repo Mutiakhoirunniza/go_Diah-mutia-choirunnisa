@@ -14,6 +14,6 @@ func linier2(n int, m int) int {
 }
 
 func main() {
-	result := linier2(5, 3)
+	result := linier2(5, 10)
 	fmt.Println(result)
 }
