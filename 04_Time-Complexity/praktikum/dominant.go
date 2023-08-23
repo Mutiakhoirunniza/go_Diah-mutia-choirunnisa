@@ -11,7 +11,7 @@ func dominant(n int) int {
 	return result
 }
 
-func mainn() {
+func main() {
 	result := dominant(5)
 	fmt.Println(result)
 }
