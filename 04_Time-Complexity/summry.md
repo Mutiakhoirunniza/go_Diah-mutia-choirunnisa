@@ -17,3 +17,5 @@ contoh N = 8
 O(n) = ia di lakukan sebanyak 8 x operasi 
 O(1) = operasinya hanyak dilakukan sebanyak 1 kali 
 O (log n) Operasinya dilakukan /2.
+
+space complexity( yaitu tempat penyimpanan sementara dalam operasi)
