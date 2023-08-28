@@ -2,70 +2,79 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
-type student struct {
-	name       string
-	nameEncode string
-	score      int
+type Cipher interface {
+	Encode(input string) string
+	Decode(input string) string
 }
 
-type Chiper interface {
-	Encode() string
-	Decode() string
+type SubstitutionCipher struct {
+	substitutions map[rune]rune
 }
 
-func (s *student) Encode() string {
-	var nameEncode = ""
+func NewSubstitutionCipher() *SubstitutionCipher {
+	substitutions := map[rune]rune{
+		'r': 'i',
+		'i': 'r',
+		'z': 'a',
+		'k': 'p',
+		'y': 'b',
+	}
 
-	for _, char := range s.name {
-		if char == ' ' {
-			nameEncode += " "
+	return &SubstitutionCipher{substitutions: substitutions}
+}
+
+func (s *SubstitutionCipher) Encode(input string) string {
+	var result strings.Builder
+
+	for _, char := range input {
+		if newChar, exists := s.substitutions[char]; exists {
+			result.WriteRune(newChar)
 		} else {
-			encodedChar := substituteCipher(char, 3)
-			nameEncode += string(encodedChar)
+			result.WriteRune(char)
 		}
 	}
 
-	return nameEncode
+	return result.String()
 }
 
-func (s *student) Decode() string {
-	var nameDecode = ""
+func (s *SubstitutionCipher) Decode(input string) string {
+	reversedSubstitutions := make(map[rune]rune)
+	for key, value := range s.substitutions {
+		reversedSubstitutions[value] = key
+	}
 
-	for _, char := range s.name {
-		if char == ' ' {
-			nameDecode += " "
+	var result strings.Builder
+
+	for _, char := range input {
+		if originalChar, exists := reversedSubstitutions[char]; exists {
+			result.WriteRune(originalChar)
 		} else {
-			decodedChar := substituteCipher(char, -3)
-			nameDecode += string(decodedChar)
+			result.WriteRune(char)
 		}
 	}
 
-	return nameDecode
-}
-
-func substituteCipher(char rune, shift int) rune {
-	shifted := (int(char-'a')+shift+26)%26 + 'a'
-	return rune(shifted)
+	return result.String()
 }
 
 func main() {
-	var menu int
-	var a student = student{}
-	var c Chiper = &a
+	cipher := NewSubstitutionCipher()
 
-	fmt.Print("[1] Encrypt \n[2] Decrypt \nChoose your menu? ")
+	var menu int
+	fmt.Print("[1] Encrypt\n[2] Decrypt\nChoose your menu? ")
 	fmt.Scan(&menu)
 
+	var input string
 	fmt.Print("\nInput Student Name: ")
-	fmt.Scan(&a.name)
+	fmt.Scan(&input)
 
 	if menu == 1 {
-		encodedName := c.Encode()
-		fmt.Printf("\nEncode of student's name %s is : %s", a.name, encodedName)
+		encoded := cipher.Encode(input)
+		fmt.Printf("Encode of student’s name %s is %s\n", input, encoded)
 	} else if menu == 2 {
-		decodedName := c.Decode()
-		fmt.Printf("\nDecode of student's name %s is : %s", a.name, decodedName)
+		decoded := cipher.Decode(input)
+		fmt.Printf("Decode of student’s name %s is %s\n", input, decoded)
 	}
 }

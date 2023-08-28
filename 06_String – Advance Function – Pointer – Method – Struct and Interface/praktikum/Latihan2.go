@@ -6,102 +6,83 @@ import (
 )
 
 type Student struct {
-	name  string
-	score []float64
+	Name  string
+	Score int
 }
 
-func (s Student) AverageScore() float64 {
-	total := 0.0
-	for _, sc := range s.score {
-		total += sc
+type Students []Student
+
+func (s *Students) AddStudent(name string, score int) {
+	student := Student{Name: name, Score: score}
+	*s = append(*s, student)
+}
+
+func (s Students) AverageScore() float64 {
+	totalScore := 0
+	for _, student := range s {
+		totalScore += student.Score
 	}
-	return total / float64(len(s.score))
+	return float64(totalScore) / float64(len(s))
 }
 
-func (s Student) MinScore() float64 {
-	minScore := math.MaxFloat64
-	for _, sc := range s.score {
-		if sc < minScore {
-			minScore = sc
+func (s Students) MinScore() Student {
+	minScore := math.MaxInt32
+	var minStudent Student
+	minIndex := -1
+
+	for i, student := range s {
+		if student.Score < minScore {
+			minScore = student.Score
+			minStudent = student
+			minIndex = i
 		}
 	}
-	return minScore
+
+	if minIndex != -1 {
+		s = append(s[:minIndex], s[minIndex+1:]...)
+	}
+
+	return minStudent
 }
 
-func (s Student) MaxScore() float64 {
-	maxScore := -math.MaxFloat64
-	for _, sc := range s.score {
-		if sc > maxScore {
-			maxScore = sc
+func (s Students) MaxScore() Student {
+	maxScore := math.MinInt32
+	var maxStudent Student
+	maxIndex := -1
+
+	for i, student := range s {
+		if student.Score > maxScore {
+			maxScore = student.Score
+			maxStudent = student
+			maxIndex = i
 		}
 	}
-	return maxScore
+
+	if maxIndex != -1 {
+		s = append(s[:maxIndex], s[maxIndex+1:]...)
+	}
+
+	return maxStudent
 }
 
 func main() {
-	students := make([]Student, 0)
+	var students Students
 
-	for i := 1; i <= 5; i++ {
+	for i := 0; i < 5; i++ {
 		var name string
-		var scores []float64
-
-		fmt.Printf("Enter name of student %d: ", i)
+		var score int
+		fmt.Printf("Masukkan nama siswa ke-%d: ", i+1)
 		fmt.Scan(&name)
-
-		for j := 1; j <= 3; j++ {
-			var score float64
-			fmt.Printf("Enter score %d for student %d: ", j, i)
-			fmt.Scan(&score)
-			scores = append(scores, score)
-		}
-
-		student := Student{
-			name:  name,
-			score: scores,
-		}
-
-		students = append(students, student)
+		fmt.Printf("Masukkan skor siswa ke-%d: ", i+1)
+		fmt.Scan(&score)
+		students.AddStudent(name, score)
 	}
 
-	// Input 1 Student's Name and 1 Student's Score
-	var newName string
-	var newScore float64
+	average := students.AverageScore()
+	minStudent := students.MinScore()
+	maxStudent := students.MaxScore()
 
-	fmt.Print("Enter name of a new student: ")
-	fmt.Scan(&newName)
-
-	fmt.Print("Enter score of the new student: ")
-	fmt.Scan(&newScore)
-
-	newStudent := Student{
-		name:  newName,
-		score: []float64{newScore},
-	}
-
-	students = append(students, newStudent)
-
-	totalAverage := 0.0
-	minScore := math.MaxFloat64
-	maxScore := -math.MaxFloat64
-
-		for _, student := range students {
-		average := student.AverageScore()
-		if average < minScore {
-			minScore = average
-		}
-		if average > maxScore {
-			maxScore = average
-		}
-		totalAverage += average
-	}
-
-	fmt.Printf("\nAverage scores:\n")
-	for student := range students {
-		average := student.AverageScore()
-		fmt.Printf("%s: %.2f\n", student.name, average)
-	}
-
-	fmt.Printf("\nAverage of all students: %.2f\n", totalAverage/float64(len(students)))
-	fmt.Printf("Student with minimum average score: %.2f\n", minScore)
-	fmt.Printf("Student with maximum average score: %.2f\n", maxScore)
+	fmt.Printf("Skor rata-rata: %.2f\n", average)
+	fmt.Printf("Siswa dengan skor minimum: %s (%d)\n", minStudent.Name, minStudent.Score)
+	fmt.Printf("Siswa dengan skor maksimum: %s (%d)\n", maxStudent.Name, maxStudent.Score)
 }
