@@ -37,15 +37,13 @@ func main() {
 	var factor float64
 	if carType == "suv" {
 		factor = 1.5
-	} else if carType == "sedan" {
-		factor = 1.7
 	} else {
 		fmt.Println("Jenis mobil tidak valid.")
 		os.Exit(1)
 	}
 
 	myCar := Car{
-		tipeMobil:  carType,
+		tipeMobil:  carType,s
 		bahanBakar: bahanBakar,
 		factor:     factor,
 	}
