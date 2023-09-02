@@ -1,32 +1,23 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
-// generateBinaryNumbers menghasilkan representasi biner dari bilangan bulat dari 0 hingga n.
-func generateBinaryNumbers(n int) []string {
-	ans := make([]string, n+1)
+func generateIndices(n int) []int {
+	indices := make([]int, n+1)
 
 	for i := 0; i <= n; i++ {
-		binaryString := strconv.FormatInt(int64(i), 2)
-		ans[i] = binaryString
+		indices[i] = i
 	}
 
-	return ans
+	return indices
 }
 
 func main() {
-	// Menggunakan generateBinaryNumbers untuk N1
-	N1 := 2
-	result1 := generateBinaryNumbers(N1)
-	fmt.Printf("input:%d\n", N1)
-	fmt.Printf("output %v\n", result1)
+	n1 := 2
+	indices1 := generateIndices(n1)
+	fmt.Println(indices1) // Output: [0 1 2]
 
-	// Menggunakan generateBinaryNumbers untuk N2
-	N2 := 3
-	result2 := generateBinaryNumbers(N2)
-	fmt.Printf("input:%d\n", N2)
-	fmt.Printf("output %v\n", result2)
+	n2 := 3
+	indices2 := generateIndices(n2)
+	fmt.Println(indices2) // Output: [0 1 2 3]
 }
