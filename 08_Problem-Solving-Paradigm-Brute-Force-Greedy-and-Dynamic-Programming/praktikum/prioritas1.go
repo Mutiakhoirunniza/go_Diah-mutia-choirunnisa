@@ -1,23 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
-func generateIndices(n int) []int {
-	indices := make([]int, n+1)
-
+func binaryRepresentation(n int) []string {
+	ans := make([]string, n+1)
 	for i := 0; i <= n; i++ {
-		indices[i] = i
+		ans[i] = strconv.FormatInt(int64(i), 2)
 	}
-
-	return indices
+	return ans
 }
 
 func main() {
 	n1 := 2
-	indices1 := generateIndices(n1)
-	fmt.Println(indices1) // Output: [0 1 2]
-
 	n2 := 3
-	indices2 := generateIndices(n2)
-	fmt.Println(indices2) // Output: [0 1 2 3]
+
+	for _, n := range []int{n1, n2} {
+		result := binaryRepresentation(n)
+		fmt.Printf("Input: n = %d\n", n)
+		fmt.Printf("Output: [%s]\n", strings.Join(result, ", "))
+	}
 }
