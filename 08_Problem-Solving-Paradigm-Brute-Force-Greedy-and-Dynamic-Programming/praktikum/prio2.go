@@ -16,7 +16,7 @@ func Frog(jumps []int) int {
 
 	// Inisialisasi biaya untuk mencapai batu pertama (dp[0] = 0)
 	// dan biaya untuk mencapai batu kedua (dp[1]) dengan biaya absolut dari perbedaan tinggi.
-	dp[0] = 0
+	dp[0] = 0 // dynamic programming
 	dp[1] = int(math.Abs(float64(jumps[1] - jumps[0])))
 
 	// Iterasi dari batu ketiga hingga batu terakhir untuk menghitung biaya minimum.
