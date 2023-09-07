@@ -43,7 +43,7 @@ func main() {
 	}
 
 	myCar := Car{
-		tipeMobil:  carType,s
+		tipeMobil:  carType,
 		bahanBakar: bahanBakar,
 		factor:     factor,
 	}

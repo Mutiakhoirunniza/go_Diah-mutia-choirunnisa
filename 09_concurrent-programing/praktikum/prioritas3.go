@@ -16,9 +16,9 @@ func MultiplesOfThree(start, end int, ch chan int, wg *sync.WaitGroup) {
 
 func main() {
 	const start = 1
-	const end = 15 // Anda dapat mengubah batas sesuai kebutuhan
+	const end = 20
 	const goroutineCount = 3
-	const bufferSize = 10 // Ukuran buffer channel
+	const bufferSize = 10
 
 	var wg sync.WaitGroup
 	ch := make(chan int, bufferSize) // Buat channel dengan buffer
@@ -26,7 +26,7 @@ func main() {
 	// Menjalankan goroutine untuk mencari kelipatan 3
 	for i := 0; i < goroutineCount; i++ {
 		wg.Add(1)
-		go findMultiplesOfThree(start+i, end, ch, &wg)
+		go MultiplesOfThree(start+i, end, ch, &wg)
 	}
 
 	// Menunggu hingga semua goroutine selesai dan menutup channel
