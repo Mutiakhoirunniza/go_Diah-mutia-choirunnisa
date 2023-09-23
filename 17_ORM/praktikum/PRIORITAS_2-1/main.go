@@ -1,8 +1,8 @@
 package main
 
 import (
-	"17/PRIORITAS_2-1/config"
-	"17/PRIORITAS_2-1/router"
+	"17/prioritas_2-1/config"
+	"17/prioritas_2-1/router"
 )
 
 func main() {

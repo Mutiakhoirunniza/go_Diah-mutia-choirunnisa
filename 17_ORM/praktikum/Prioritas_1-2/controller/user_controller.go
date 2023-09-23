@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"17/Prioritas_1-2/config"
-	"17/Prioritas_1-2/model"
+	"17/prioritas_1-2/config"
+	"17/prioritas_1-2/model"
 	"net/http"
 	"strconv"
 

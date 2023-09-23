@@ -1,7 +1,7 @@
-package router
+package respon
 
 import (
-	"17/Eksplorasi/controller"
+	"17/eksplorasi/controller"
 
 	"github.com/labstack/echo/v4"
 )

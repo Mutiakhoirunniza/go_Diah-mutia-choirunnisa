@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"17/Eksplorasi/config"
-	"17/Eksplorasi/model"
+	"17/eksplorasi/config"
+	"17/eksplorasi/model"
 	"net/http"
 	"strconv"
 
@@ -10,17 +10,10 @@ import (
 )
 
 func CreateBlogsController(c echo.Context) error {
-	blog := new(model.Blog)
-	if err := c.Bind(blog); err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
-	}
+	blog := model.Blog{}
+	c.Bind(&blog)
 
-	var user model.User
-	if err := config.DB.First(&user, blog.UserID).Error; err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid UserID")
-	}
-
-	if err := config.DB.Create(blog).Error; err != nil {
+	if err := config.DB.Save(&blog).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 

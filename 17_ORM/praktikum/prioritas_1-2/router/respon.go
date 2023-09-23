@@ -1,4 +1,4 @@
-package router
+package model
 
 import (
 	"17/prioritas_1-2/controller"

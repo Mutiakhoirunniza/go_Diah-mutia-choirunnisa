@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"17/PRIORITAS_2-1/config"
-	"17/PRIORITAS_2-1/model"
+	"17/eksplorasi/config"
+	"17/eksplorasi/model"
 	"net/http"
 	"strconv"
 
@@ -13,7 +13,7 @@ import (
 func GetUsersController(c echo.Context) error {
 	var users []model.User
 
-	if err := config.DB.Find(&users).Error; err != nil {
+	if err := config.DB.Model(&model.User{}).Preload("Blogs").Find(&users).Error; err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{

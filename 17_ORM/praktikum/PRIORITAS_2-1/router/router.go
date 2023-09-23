@@ -1,7 +1,7 @@
 package router
 
 import (
-	"17/PRIORITAS_2-1/controller"
+	"17/eksplorasi/controller"
 
 	"github.com/labstack/echo/v4"
 )

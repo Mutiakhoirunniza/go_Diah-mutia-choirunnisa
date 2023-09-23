@@ -1,7 +1,7 @@
 package config
 
 import (
-	"17/Eksplorasi/model"
+	"17/eksplorasi/model"
 	"fmt"
 
 	"gorm.io/driver/mysql"

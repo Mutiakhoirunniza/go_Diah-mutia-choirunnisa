@@ -1,14 +1,14 @@
 package main
 
 import (
-	"17/Prioritas_1-2/config"
-	"17/Prioritas_1-2/router"
+	"17/eksplorasi/config"
+	"17/eksplorasi/respon"
 )
 
 func main() {
 	// create a new echo instance
 	config.InitDB()
 
-	e := router.New()
+	e := respon.New()
 	e.Start(":8000")
 }
