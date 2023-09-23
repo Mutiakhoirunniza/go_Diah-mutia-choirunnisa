@@ -1,7 +1,7 @@
 package config
 
 import (
-	"17/PRIORITAS_2-1/model"
+	"17/Eksplorasi/model"
 	"fmt"
 
 	"gorm.io/driver/mysql"
@@ -51,7 +51,7 @@ func InitDB() {
 }
 
 func InitialMigration() {
-	if err := DB.AutoMigrate(&model.User{}, &model.Book{}); err != nil {
+	if err := DB.AutoMigrate(&model.User{}, &model.Book{}, &model.Blog{}); err != nil {
 		panic(err)
 	}
 }
