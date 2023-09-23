@@ -7,14 +7,14 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type User struct {
+type Users struct {
 	ID       int    `json:"id" form:"id"`
 	Name     string `json:"name" form:"name"`
 	Email    string `json:"email" form:"email"`
 	Password string `json:"password" form:"password"`
 }
 
-var users []User
+var users []Users
 
 func GetUsersController(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
@@ -32,7 +32,7 @@ func GetUserController(c echo.Context) error {
 		})
 	}
 
-	var foundUser User
+	var foundUser Users
 	for _, user := range users {
 		if user.ID == userID {
 			foundUser = user
@@ -102,7 +102,7 @@ func UpdateUserController(c echo.Context) error {
 		})
 	}
 
-	var updatedUser User
+	var updatedUser Users
 	if err := c.Bind(&updatedUser); err != nil {
 		return err
 	}
@@ -117,7 +117,7 @@ func UpdateUserController(c echo.Context) error {
 }
 
 func CreateUserController(c echo.Context) error {
-	user := User{}
+	user := Users{}
 	c.Bind(&user)
 
 	if len(users) == 0 {
