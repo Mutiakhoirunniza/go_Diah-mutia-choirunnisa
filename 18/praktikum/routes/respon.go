@@ -1,10 +1,6 @@
-package router
+package routes
 
-import (
-	"17/prioritas_1-2/controller"
-
-	"github.com/labstack/echo/v4"
-)
+import "github.com/labstack/echo/v4"
 
 func New() *echo.Echo {
 
