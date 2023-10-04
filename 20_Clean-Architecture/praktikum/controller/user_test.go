@@ -76,27 +76,27 @@ func TestCreateUserfailed(t *testing.T) {
 }
 
 
-// someValidationError adalah tipe error kustom
-type someValidationError struct {
-    // Anda bisa menambahkan field tambahan jika diperlukan
-    Message string
-}
+// // someValidationError adalah tipe error kustom
+// type someValidationError struct {
+//     // Anda bisa menambahkan field tambahan jika diperlukan
+//     Message string
+// }
 
-// Implementasi method Error() untuk tipe someValidationError.
-func (e *someValidationError) Error() string {
-    return e.Message
-}
+// // Implementasi method Error() untuk tipe someValidationError.
+// func (e *someValidationError) Error() string {
+//     return e.Message
+// }
 
-// someUnauthorizedError adalah tipe error kustom
-type someUnauthorizedError struct {
-    // Anda bisa menambahkan field tambahan jika diperlukan
-    Message string
-}
+// // someUnauthorizedError adalah tipe error kustom
+// type someUnauthorizedError struct {
+//     // Anda bisa menambahkan field tambahan jika diperlukan
+//     Message string
+// }
 
-// Implementasi method Error() untuk tipe someUnauthorizedError.
-func (e *someUnauthorizedError) Error() string {
-    return e.Message
-}
+// // Implementasi method Error() untuk tipe someUnauthorizedError.
+// func (e *someUnauthorizedError) Error() string {
+//     return e.Message
+// }
 
 
 
