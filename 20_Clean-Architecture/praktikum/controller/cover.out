@@ -1,12 +1,12 @@
 mode: set
-20/controller/user.go:18.73,22.2 1 1
-20/controller/user.go:24.60,26.16 2 1
-20/controller/user.go:26.16,30.3 1 0
-20/controller/user.go:31.2,33.4 1 1
-20/controller/user.go:36.59,39.16 3 1
-20/controller/user.go:39.16,43.3 1 0
-20/controller/user.go:44.2,45.16 2 1
-20/controller/user.go:45.16,49.3 1 0
-20/controller/user.go:50.2,51.16 2 1
-20/controller/user.go:51.16,55.3 1 0
-20/controller/user.go:57.2,63.4 2 1
+20/controller/user.go:25.72,29.2 1 1
+20/controller/user.go:32.60,34.16 2 1
+20/controller/user.go:34.16,38.3 1 0
+20/controller/user.go:39.2,41.4 1 1
+20/controller/user.go:45.59,48.16 3 1
+20/controller/user.go:48.16,52.3 1 0
+20/controller/user.go:54.2,55.16 2 1
+20/controller/user.go:55.16,59.3 1 1
+20/controller/user.go:61.2,62.16 2 1
+20/controller/user.go:62.16,66.3 1 0
+20/controller/user.go:68.2,74.4 2 1

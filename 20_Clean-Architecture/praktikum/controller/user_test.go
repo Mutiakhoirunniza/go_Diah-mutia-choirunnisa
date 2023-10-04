@@ -1,155 +1,102 @@
 package controller_test
 
 import (
-	"20/controller"
-	"20/model"
-	"20/repository"
-	"net/http"
-	"net/http/httptest"
-	"strings"
-	"testing"
+    "20/controller"
+    "20/model"
+    "20/repository"
+    "errors"
+    "net/http"
+    "net/http/httptest"
+    "strings"
+    "testing"
 
-	"github.com/labstack/echo/v4"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
-
+    "github.com/labstack/echo/v4"
+    "github.com/stretchr/testify/assert"
 )
 
-func TestGetAllUsers(t *testing.T) {
-	e := echo.New()
-	mockUserRepo := &repository.MockUserRepository{}
-	uController := controller.NewUserController(mockUserRepo)
+func TestGetAllUsersSuccess(t *testing.T) {
+    // Inisialisasi Echo
+    e := echo.New()
 
-	req := httptest.NewRequest(http.MethodGet, "/users", nil)
-	rec := httptest.NewRecorder()
-	c := e.NewContext(req, rec)
+    // Membuat mock repository dan controller
+    mockUserRepo := &repository.MockUserRepository{}
+    uController := controller.NewUserController(mockUserRepo)
 
-	mockUserRepo.On("Find").Return([]model.User{}, nil).Once()
+    // Membuat permintaan HTTP GET palsu
+    req := httptest.NewRequest(http.MethodGet, "/users", nil)
+    rec := httptest.NewRecorder()
+    c := e.NewContext(req, rec)
 
-	if assert.NoError(t, uController.GetAllUsers(c)) {
-		assert.Equal(t, http.StatusOK, rec.Code)
-	}
+    // Mengatur mock repository untuk mengembalikan beberapa data pengguna
+    users := []model.User{}
+    mockUserRepo.On("Find").Return(users, nil)
 
-	mockUserRepo.AssertExpectations(t)
+    // Menjalankan fungsi pengujian
+    err := uController.GetAllUsers(c)
+    assert.NoError(t, err)
+    assert.Equal(t, http.StatusOK, rec.Code)
+
+    mockUserRepo.AssertExpectations(t)
 }
 
-func TestCreateUser(t *testing.T) {
-	reqbody := `{
-		"email": "mutiakhoirunniza@gmail.com",
-		"password":"2002"}`
+func TestCreateUserValidJSON(t *testing.T) {
+    // JSON body yang valid
+    reqbody := `{ "email": "Mutia123@gmail.com", "password": "mutia1234fyu" }`
 
-	mockUserRepo := &repository.MockUserRepository{}
-	uController := controller.NewUserController(mockUserRepo)
-	mockUserRepo.On("Create", mock.AnythingOfType("model.User")).Return(nil)
+    // Membuat mock repository dan controller
+    mockUserRepo := &repository.MockUserRepository{}
+    uController := controller.NewUserController(mockUserRepo)
 
-	req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(reqbody))
-	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	rec := httptest.NewRecorder()
-	e := echo.New()
-	c := e.NewContext(req, rec)
+    // Membuat pengguna yang diharapkan untuk dibuat
+    expectedUser := model.User{
+        Email:    "Mutia123@gmail.com",
+        Password: "mutia1234fyu",
+    }
 
-	err := uController.CreateUser(c)
+    mockUserRepo.On("Create", expectedUser).Return(nil)
 
-	assert.NoError(t, err)
-	assert.Equal(t, http.StatusOK, rec.Code)
-	mockUserRepo.AssertExpectations(t)
+    // Membuat permintaan HTTP POST palsu dengan JSON body
+    req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(reqbody))
+    req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+    rec := httptest.NewRecorder()
+    e := echo.New()
+    c := e.NewContext(req, rec)
+
+    // Menjalankan fungsi pengujian
+    err := uController.CreateUser(c)
+    assert.NoError(t, err)
+    assert.Equal(t, http.StatusOK, rec.Code)
+    
+    mockUserRepo.AssertExpectations(t)
 }
 
-func TestCreateUserfailed(t *testing.T) {
+func TestCreateUserOtherErrors(t *testing.T) {
+    // JSON body yang valid
+    reqbody := `{ "email": "Mutia123@gmail.com"}`
 
-	mockUserRepo := &repository.MockUserRepository{}
-	uController := controller.NewUserController(mockUserRepo)
+    // Membuat mock repository dan controller
+    mockUserRepo := &repository.MockUserRepository{}
+    uController := controller.NewUserController(mockUserRepo)
 
-	mockUserRepo.On("Create", mock.AnythingOfType("model.User")).Return(nil)
+    // Membuat pengguna yang diharapkan untuk dibuat
+    expectedUser := model.User{
+        Email:    "Mutia123@gmail.com",
+    }
 
-	req := httptest.NewRequest(http.MethodPost, "/users", nil)
-	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	rec := httptest.NewRecorder()
-	e := echo.New()
-	c := e.NewContext(req, rec)
+    // Mengatur ekspektasi panggilan Create pada mock repository untuk mengembalikan kesalahan
+    mockUserRepo.On("Create", expectedUser).Return(errors.New("some other error"))
 
-	err := uController.CreateUser(c)
+    // Membuat permintaan HTTP POST palsu dengan JSON body
+    req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(reqbody))
+    req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+    rec := httptest.NewRecorder()
+    e := echo.New()
+    c := e.NewContext(req, rec)
 
-	assert.NoError(t, err)
+    // Menjalankan fungsi pengujian
+    if assert.NoError(t, uController.CreateUser(c)){
+        assert.Equal(t, http.StatusInternalServerError, rec.Code)
+    }
 
-	mockUserRepo.AssertExpectations(t)
+    mockUserRepo.AssertExpectations(t)
 }
-
-
-// // someValidationError adalah tipe error kustom
-// type someValidationError struct {
-//     // Anda bisa menambahkan field tambahan jika diperlukan
-//     Message string
-// }
-
-// // Implementasi method Error() untuk tipe someValidationError.
-// func (e *someValidationError) Error() string {
-//     return e.Message
-// }
-
-// // someUnauthorizedError adalah tipe error kustom
-// type someUnauthorizedError struct {
-//     // Anda bisa menambahkan field tambahan jika diperlukan
-//     Message string
-// }
-
-// // Implementasi method Error() untuk tipe someUnauthorizedError.
-// func (e *someUnauthorizedError) Error() string {
-//     return e.Message
-// }
-
-
-
-
-
-// func TestCreateUser_WithValidationError(t *testing.T) {
-// 	reqbody := `{
-//         "email": "invalid-email",
-//         "password":"2002"
-//     }`
-
-// 	mockUserRepo := &repository.MockUserRepository{}
-// 	uController := controller.NewUserController(mockUserRepo)
-
-// 	mockUserRepo.On("Create", mock.AnythingOfType("model.User")).Return(e.Message)
-
-// 	req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(reqbody))
-// 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-// 	rec := httptest.NewRecorder()
-// 	e := echo.New()
-// 	c := e.NewContext(req, rec)
-
-// 	err := uController.CreateUser(c)
-
-// 	assert.Error(t, err)
-// 	assert.Equal(t, http.StatusBadRequest, rec.Code)
-
-// 	mockUserRepo.AssertExpectations(t)
-// }
-
-// func TestCreateUser_WithUnauthorizedError(t *testing.T) {
-// 	reqbody := `{
-//         "email": "mutiakhoirunniza@gmail.com",
-//         "password":"2002"
-//     }`
-
-// 	mockUserRepo := &repository.MockUserRepository{}
-// 	uController := controller.NewUserController(mockUserRepo)
-
-// 	// Set up the mockUserRepo to return an unauthorized error.
-
-// 	mockUserRepo.On("Create", mock.AnythingOfType("model.User")).Return(someUnauthorizedError)
-
-// 	req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(reqbody))
-// 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-// 	rec := httptest.NewRecorder()
-// 	e := echo.New()
-// 	c := e.NewContext(req, rec)
-
-// 	err := uController.CreateUser(c)
-
-// 	assert.Error(t, err)
-// 	assert.Equal(t, http.StatusUnauthorized, rec.Code)
-
-// 	mockUserRepo.AssertExpectations(t)
-// }

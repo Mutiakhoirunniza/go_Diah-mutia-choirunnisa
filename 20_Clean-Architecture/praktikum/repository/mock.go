@@ -14,6 +14,7 @@ func NewMockUserRepo() *MockUserRepository {
 	return &MockUserRepository{}
 }
 
+
 func (m *MockUserRepository) Create(user model.User) error {
 	ret := m.Called(user)
 	return ret.Error(0)
