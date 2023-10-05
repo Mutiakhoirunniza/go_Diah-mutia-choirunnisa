@@ -60,42 +60,39 @@ func CreateUserController(c echo.Context) error {
 }
 
 func LoginUserController(c echo.Context) error {
-    user := models.Users{}
-    c.Bind(&user)
+	user := models.Users{}
+	c.Bind(&user)
 
-    err := config.DB.Where("email = ? AND password = ?", user.Email, user.Password).First(&user).Error
-    if err != nil {
-        return c.JSON(http.StatusBadRequest, map[string]interface{}{
-            "message": "Fail login",
-            "error":   err.Error(),
-        })
-    }
+	err := config.DB.Where("email = ? AND password = ?", user.Email, user.Password).First(&user).Error
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"message": "Fail login",
+			"error":   err.Error(),
+		})
+	}
 
-    
-    userID := int(user.ID)
+	userID := int(user.ID)
 
-    token, err := middleware.CreateToken(userID, user.Name)
-    if err != nil {
-        return c.JSON(http.StatusBadRequest, map[string]interface{}{
-            "message": "Fail login",
-            "error":   err.Error(),
-        })
-    }
+	token, err := middleware.CreateToken(userID, user.Name)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"message": "Fail login",
+			"error":   err.Error(),
+		})
+	}
 
 	UsersResponse := models.UsersResponse{
-        ID:    user.ID,
-        Name:  user.Name,
-        Email: user.Email,
-        Token: token,
-    }
+		ID:    user.ID,
+		Name:  user.Name,
+		Email: user.Email,
+		Token: token,
+	}
 
-    return c.JSON(http.StatusOK, map[string]interface{}{
-        "message": "success login",
-        "user":    UsersResponse,
-    })
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success login",
+		"user":    UsersResponse,
+	})
 }
-
-
 
 // delete user by id
 func DeleteUserController(c echo.Context) error {

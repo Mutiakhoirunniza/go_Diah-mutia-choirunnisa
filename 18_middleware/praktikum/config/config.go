@@ -55,4 +55,3 @@ func InitialMigration() {
 		panic(err)
 	}
 }
-
