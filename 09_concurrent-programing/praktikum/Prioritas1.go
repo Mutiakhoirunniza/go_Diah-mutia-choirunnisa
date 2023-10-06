@@ -2,28 +2,21 @@ package main
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
 
-func printMultiples(x int, max int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for i := 1; i <= max; i++ {
-		if i%x == 0 {
-			fmt.Println(i, "kelipatan dari", x)
-		}
+func printMultiples(x int) {
+	for i := 1; ; i++ {
+		fmt.Printf("Kelipatan %d: %d\n", i, x*i)
 		time.Sleep(3 * time.Second)
 	}
 }
 
 func main() {
-	x := 10
-	max := 110
-	var wg sync.WaitGroup
-	wg.Add(1)
+	var userInput int
+	fmt.Print("Masukkan angka kelipatan yang diinginkan: ")
+	fmt.Scan(&userInput)
 
-	go printMultiples(x, max, &wg)
-
-	// Menunggu sampai goroutine selesai
-	wg.Wait()
+	go printMultiples(userInput)
+	time.Sleep(30 * time.Second)
 }

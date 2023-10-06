@@ -3,51 +3,32 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
-
-var (
-	result int64
-	mutex  sync.Mutex
-)
-
-func factorial(n int) int64 {
-	if n <= 0 {
-		return 1
-	}
-	fact := int64(1)
-	for i := 1; i <= n; i++ {
-		fact *= int64(i)
-	}
-	return fact
-}
-
-func calculateFactorial(n int, wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	// Mengunci mutex
-	mutex.Lock()
-	defer mutex.Unlock()
-
-	result += factorial(n)
-}
 
 func main() {
-	const numCalculations = 5
+	var lock sync.Mutex
+
+	numWorkers := 8
 	var wg sync.WaitGroup
+	wg.Add(numWorkers)
 
-	// Angka-angka yang akan dihitung faktorialnya
-	numbers := []int{5, 6, 7, 8, 9}
+	var sum int
 
-	// Mengatur WaitGroup untuk menunggu semua goroutine selesai
-	wg.Add(numCalculations)
+	for i := 0; i < numWorkers; i++ {
+		go func(index int) {
+			defer wg.Done()
 
-	// Menjalankan goroutine untuk menghitung faktorial
-	for _, n := range numbers {
-		go calculateFactorial(n, &wg)
+			delay := time.Duration(index * 150)
+			time.Sleep(time.Millisecond * delay)
+
+			lock.Lock()
+			sum += index * index // Menghitung kuadrat dari index
+			lock.Unlock()
+		}(i)
 	}
 
-	// Menunggu semua goroutine selesai
 	wg.Wait()
 
-	fmt.Printf("Hasil penjumlahan faktorial: %d\n", result)
+	fmt.Printf("Result: %d\n", sum)
 }
