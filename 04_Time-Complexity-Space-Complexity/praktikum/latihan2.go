@@ -1,28 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func pow(x, n int) int {
 	if n == 0 {
 		return 1
 	}
-
-	halfPow := pow(x, n/2)
 	if n%2 == 0 {
-		return halfPow * halfPow
-	} else {
-		return halfPow * halfPow * x
+		temp := pow(x, n/2)
+		return temp * temp
 	}
+	temp := pow(x, (n-1)/2)
+	return x * temp * temp
 }
 
 func main() {
-	x := 2
-	n := 3
-	fmt.Printf("input : x=%d, n=%d\n", x, n)
-	fmt.Println(pow(x, n))
+	fmt.Println(pow(2, 3)) // 8
 
-	x = 7
-	n = 2
-	fmt.Printf("input : x=%d, n=%d\n", x, n)
-	fmt.Println(pow(x, n))
+	fmt.Println(pow(5, 3)) // 125
+
+	fmt.Println(pow(10, 2)) // 100
+
+	fmt.Println(pow(2, 5)) // 32
+
+	fmt.Println(pow(7, 3)) // 343
 }

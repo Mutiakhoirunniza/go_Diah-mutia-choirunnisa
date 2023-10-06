@@ -2,15 +2,26 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
-func PrimeNumber(n int) bool {
+func isPrime(n int) bool {
 	if n <= 1 {
 		return false
 	}
 
-	for i := 2; i*i <= n; i++ {
-		if n%i == 0 {
+	if n <= 3 {
+		return true
+	}
+
+	if n%2 == 0 || n%3 == 0 {
+		return false
+	}
+
+	sqrtN := int(math.Sqrt(float64(n)))
+
+	for i := 5; i <= sqrtN; i += 6 {
+		if n%i == 0 || n%(i+2) == 0 {
 			return false
 		}
 	}
@@ -19,21 +30,9 @@ func PrimeNumber(n int) bool {
 }
 
 func main() {
-	input1 := 1000000007
-	if PrimeNumber(input1) {
-		fmt.Println(input1)
-		fmt.Println("Bilangan Prima\n")
-	} else {
-		fmt.Println(input1)
-		fmt.Println("Bukan Bilangan Prima\n")
-	}
-
-	input2 := 1500450271
-	if PrimeNumber(input2) {
-		fmt.Println(input2)
-		fmt.Println("Bilangan Prima\n")
-	} else {
-		fmt.Println(input2)
-		fmt.Println("Bukan Bilangan Prima\n")
-	}
+	fmt.Println(isPrime(1000000007)) // Menghasilkan true (bilangan prima)
+	fmt.Println(isPrime(13))         // Menghasilkan true (bilangan prima)
+	fmt.Println(isPrime(17))         // Menghasilkan true (bilangan prima)
+	fmt.Println(isPrime(20))         // Menghasilkan false (bukan bilangan prima)
+	fmt.Println(isPrime(35))         // Menghasilkan false (bukan bilangan prima)
 }
