@@ -106,3 +106,9 @@ docker rm <container-id>
     ` Penyimpanan   : dapat dengan mudah mengatur kapasitas penyimpanan untuk basis data sesuai kebutuhan.
 
     ` Skalabilitas  : Layanan ini memungkinkan untuk dengan cepat menambahkan kapasitas dan mengubah ukuran basis data ketika diperlukan.
+
+### deploy gcp :
+    1. buat vm instance (compute engine)
+    2. buat sql di google cloud lalu buat database sesuai config
+    3. ubah network pada connections di sql lalu add network dengan ip 0.0.0.0/0 untuk mengizinkan setiap ip mengakses
+    4. ubah pada firewall policies gcp untuk protocols and ports allow all
