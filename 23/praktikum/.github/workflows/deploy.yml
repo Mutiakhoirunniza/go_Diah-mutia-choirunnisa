@@ -35,7 +35,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
+        tags: ${{ secrets.DOCKERHUBUSERNAMES }}/datadocker:latest
         
   #melakukan deploy menggunakan docker
   deploy-prod:
@@ -53,6 +53,6 @@ jobs:
           script: |
             docker stop data
             docker rm data
-            docker rmi ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
-            docker pull ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
-            docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSER }} -e DBPASS=${{ secrets.DBPASS }} -e DBHOST=${{ secrets.DBHOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
+            docker rmi ${{ secrets.DOCKERHUBUSERNAMES }}/datadocker:latest
+            docker pull ${{ secrets.DOCKERHUBUSERNAMES }}/datadocker:latest
+            docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSER }} -e DBPASS=${{ secrets.DBPASS }} -e DBHOST=${{ secrets.DBHOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAMES }}/datadocker:latest
