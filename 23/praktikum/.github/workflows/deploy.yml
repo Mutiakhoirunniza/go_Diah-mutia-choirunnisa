@@ -25,7 +25,7 @@ jobs:
       name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERHUBUSERNAME }}
+        username: ${{ secrets.DOCKERHUBUSERNAMES}}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     #build dan push dockerfile kedalam dockerhub
     -
@@ -35,7 +35,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
+        tags: ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
         
   #melakukan deploy menggunakan docker
   deploy-prod:
@@ -46,15 +46,13 @@ jobs:
       - name: Connect to server using SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.DB_HOST }} 
-          username: ${{ secrets.DBUSERNAME}} 
-          key: ${{ secrets.DBKEY }} 
-          port: ${{ secrets.DBPORT }} 
+          host: ${{ secrets.HOST }} 
+          username: ${{ secrets.USERNAME}} 
+          key: ${{ secrets.KEY }} 
+          port: ${{ secrets.PORT }} 
           script: |
             docker stop data
             docker rm data
-            docker rmi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
-            docker pull ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
-            docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSERNAME }} -e DBPASS=${{ secrets.DBKEY }} -e DBHOST=${{ secrets.DB_HOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
-         
-            
+            docker rmi ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
+            docker pull ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
+            docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSER }} -e DBPASS=${{ secrets.DBPASS }} -e DBHOST=${{ secrets.DBHOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAMES }}/dataCI-CD:latest
