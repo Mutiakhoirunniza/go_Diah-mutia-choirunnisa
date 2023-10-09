@@ -56,3 +56,5 @@ jobs:
             docker rmi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
             docker pull ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
             docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSERNAME }} -e DBPASS=${{ secrets.DBKEY }} -e DBHOST=${{ secrets.DB_HOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
+         
+            
