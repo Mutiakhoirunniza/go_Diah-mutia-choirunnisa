@@ -37,4 +37,22 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
         
- 
+  #melakukan deploy menggunakan docker
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: docker
+    steps:
+      #connect kedalam server menggunakan SSH
+      - name: Connect to server using SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.DB_HOST }} 
+          username: ${{ secrets.DBUSERNAME}} 
+          key: ${{ secrets.DBKEY }} 
+          port: ${{ secrets.DBPORT }} 
+          script: |
+            docker stop data
+            docker rm data
+            docker rmi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
+            docker pull ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
+            docker run -d -p 8080:8080 -e SERVERPORT=${{ secrets.DBPORT }} -e DBUSER=${{ secrets.DBUSERNAME }} -e DBPASS=${{ secrets.DBKEY }} -e DBHOST=${{ secrets.DB_HOST }} -e DBPORT=${{ secrets.DBPORT }} -e DBNAME=${{ secrets.DBNAME }} --name restapi ${{ secrets.DOCKERHUBUSERNAME }}/dataCI-CD:latest
