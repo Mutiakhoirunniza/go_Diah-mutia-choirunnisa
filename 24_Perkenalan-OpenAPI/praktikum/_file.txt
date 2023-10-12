@@ -1,0 +1,210 @@
+﻿* Pencarian tidak menggunakan modifikasi System
+
+
+  
+  
+  
+
+  
+
+
+USER                 : 
+
+Tolong Jelaskan bagaimana tips end trik agar saya mendapatkan suatu pekerjaan di dunia teknik informatika, dengan problem jika saya adalah seseorang fresh graduate dari universitas swasta yang tidak ternama dan dari jurusan teknik informatika, tetapi saya belum mempunyai pengalaman di dunia teknik informatika atau di dunia programmer
+
+ASSISTANT : 
+
+Berikut adalah beberapa tips dan trik yang dapat membantu Anda mendapatkan pekerjaan di dunia teknik informatika meskipun Anda adalah seorang fresh graduate dari universitas swasta yang tidak ternama dan tanpa pengalaman di bidang tersebut:
+
+
+1. Bangun Portofolio: Meskipun Anda tidak memiliki pengalaman kerja, Anda dapat membangun portofolio pribadi dengan membuat proyek-proyek kecil atau mengambil bagian dalam proyek-proyek open source. Ini akan menunjukkan kemampuan teknis Anda kepada calon pemberi kerja.
+
+
+2. Pelajari Bahasa Pemrograman yang Populer: Fokuskan diri pada mempelajari bahasa pemrograman yang banyak digunakan dalam industri seperti Java, Python, atau JavaScript. Menguasai bahasa-bahasa ini akan meningkatkan peluang Anda untuk mendapatkan pekerjaan.
+
+
+3. Ikuti Sertifikasi: Sertifikasi seperti Oracle Certified Associate atau Microsoft Certified Professional dapat memberikan bukti kredensial teknis kepada calon pemberi kerja. Meskipun tidak menggantikan pengalaman, sertifikasi dapat menjadi poin tambahan dalam lamaran kerja Anda.
+
+
+4. Jaringan dan Bergabung dengan Komunitas: Bergabunglah dengan komunitas teknik informatika atau grup pengembang perangkat lunak. Ini akan membantu Anda membangun jaringan profesional dan mendapatkan wawasan industri. Anda juga dapat memanfaatkan kesempatan networking untuk mencari peluang kerja.
+
+
+5. Magang atau Kerja Paruh Waktu: Coba cari peluang magang atau pekerjaan paruh waktu yang berhubungan dengan teknik informatika. Meskipun tidak langsung terkait dengan pekerjaan yang Anda inginkan, ini akan memberikan Anda pengalaman praktis dan memperluas jaringan Anda.
+
+
+6. Tingkatkan Keterampilan Soft Skills: Selain keterampilan teknis, perusahaan juga mencari keterampilan soft skills seperti kemampuan komunikasi, kerjasama tim, dan kepemimpinan. Tingkatkan keterampilan ini melalui pelatihan atau pengalaman di luar jurusan Anda.
+
+
+7. Buat Resume yang Menarik: Tulis resume yang menyoroti pendidikan Anda, proyek-proyek yang telah Anda kerjakan, dan keterampilan yang Anda miliki. Sertakan juga informasi tentang kegiatan ekstrakurikuler atau organisasi yang Anda ikuti yang dapat menunjukkan minat dan dedikasi Anda di bidang teknik informatika.
+
+
+8. Persiapkan Diri untuk Wawancara: Pelajari tentang perusahaan yang Anda lamar dan persiapkan diri untuk pertanyaan teknis maupun non-teknis yang mungkin diajukan. Latih pula kemampuan presentasi dan menjawab pertanyaan dengan percaya diri.
+
+
+9. Jangan Takut untuk Memulai dari Bawah: Jika Anda tidak langsung mendapatkan pekerjaan yang diinginkan, jangan takut untuk memulai dari posisi entry-level atau junior. Ini akan memberikan Anda peluang untuk belajar dan mengembangkan keterampilan Anda di dunia nyata.
+
+
+10. Terus Belajar dan Beradaptasi: Industri teknik informatika terus berkembang dengan cepat. Jadi, pastikan Anda terus belajar dan mengikuti perkembangan terbaru dalam bidang tersebut. Ini akan membantu Anda tetap relevan dan meningkatkan peluang Anda untuk mendapatkan pekerjaan yang diinginkan.
+
+
+Ingatlah bahwa mendapatkan pekerjaan di dunia teknik informatika membutuhkan waktu dan kesabaran. Tetaplah gigih dalam mencari peluang, terus tingkatkan keterampilan Anda, dan jangan takut untuk mengambil langkah-langkah kecil untuk membangun karier Anda.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   * Pencarian menggunakan modifikasi system yang telah dibuat
+
+
+
+  
+
+
+
+  
+
+
+  
+
+
+
+user  : 
+tolong berikan saya contoh daftar nama nama hewan beserta jenis pemakan apa? seperti jenis pemakan karnivora, herbivora dan omivora
+ASSISTANT : 
+Tentu, berikut contoh daftar nama-nama hewan beserta jenis pemakanannya:
+
+
+1. Singa (Carnivora)
+2. Harimau (Carnivora)
+3. Serigala (Carnivora)
+4. Beruang (Omnivora)
+5. Elang (Carnivora)
+6. Buaya (Carnivora)
+7. Kuda (Herbivora)
+8. Gajah (Herbivora)
+9. Sapi (Herbivora)
+10. Kambing (Herbivora)
+
+
+Mohon diperhatikan bahwa ini hanya contoh dan bukan daftar lengkap.
+
+
+
+
+
+
+
+
+
+
+Percobaan kedua menggunakan bahasa tidak formal atau bahasa gaul 
+
+user         : 
+tolong kasih tau gw tentang daftar nama hewan 
+ASSISTANT        : 
+Maaf, tetapi saya tidak begitu memahami maksud Anda. Apakah Anda ingin daftar nama-nama hewan dalam bahasa apa? Dan apakah Anda ingin tahu tentang semua jenis hewan atau hanya hewan-hewan tertentu? Tolong berikan informasi lebih lanjut agar saya bisa membantu Anda dengan lebih baik. 
+user        : 
+bahasa yg gw mau bahasa gaul & daptar jenis hewan
+ASSISTANT        : 
+Maaf, tetapi saya hanya bisa memberikan informasi dalam bahasa formal dan tidak menerima input dalam bahasa gaul. Jika Anda ingin daftar jenis hewan, saya dapat memberikannya dalam bahasa Indonesia formal atau bahasa Inggris formal. Silakan beritahu saya bahasa yang Anda inginkan dan saya akan siap membantu.
+
+
+percobaan ke tiga saya menerjemahkan sesuai yang terdaftar 
+
+user        : 
+tolong terjemahkan eat
+ASSISTANT         : 
+Terjemahan kata "eat" ke dalam bahasa Indonesia adalah "makan".
+
+
+
+
+Percobaan ke empat menerjemahkan dengan bahasa yang tidak terdaftar oleh system 
+
+user         : 
+syö kanaa 
+ASSISTANT        : 
+Maaf, sepertinya Anda menggunakan bahasa yang tidak tersedia dalam penerjemahan saat ini. Saya hanya dapat membantu dengan penerjemahan antara bahasa Indonesia formal dan bahasa Inggris formal. Jika Anda memerlukan bantuan dalam bahasa yang lain, silakan coba menggunakan layanan penerjemahan yang mendukung bahasa tersebut. Terima kasih!
+
+
+
+
+percobaan terakhir saya menggunakan bahasa indonesia yang formal dan menggunakan terjemah bahasa yang telah terdaftar di system 
+
+user         : 
+terjemahkan makan 
+ASSISTANT         : 
+Terjemahan kata "makan" ke dalam bahasa Inggris adalah "eat".
+
+
+
+
+Kesimpulan : Dalam menggunakan Open API ini saya menggunakan dua Metode pencarian yang pertama adalah metode kita menanyakan ke Open API tanpa di modifikasi dengan system, percobaan ke dua saya menggunakan Open API dengan menggunakan Modifikasi yang kita mau menggunakan System, Dari ke dua percobaan yang telah saya gunakan dan pelajari dari open API ini kita tidak hanya mencari apapun dengan ketentuan system yang telah di buat tetapi, kita juga dapat menggunakan pencarian menggunakan modifikasi system yang kita ingin kan. agar pencarian tidak terlalu melebar kemana mana.
