@@ -21,8 +21,8 @@ func main() {
 	e.Use(middleware.Recover())
 	laptopUsecase := usecase.NewLaptopUsecase()
 	laptopHandler := handler.NewLaptopHandler(laptopUsecase)
-	e.POST("/recommend-laptop", laptopHandler.RecommendLaptop)
-	port := ":8080"
+	e.POST("/recommendation-Laptop", laptopHandler.RecommendLaptop)
+	port := ":8800"
 	fmt.Printf("Server is running on port %s\n", port)
 	e.Start(port)
 }
